@@ -9,25 +9,25 @@ class Airport
   end
 
   def land(plane)
-    @weather = storm_brewing
-    if @weather == "stormy"
+    weather = storm_brewing
+    if weather == "stormy"
       fail 'Cannot land in stormy weather'
-    elsif @parked_planes.length >= @capacity
+    elsif @parked_planes.length >= capacity
       fail 'The airport is full'
     else
-      plane::status = "landed"
+      plane.status = "landed"
       @parked_planes << plane
     end
   end
 
   def take_off(plane = @parked_planes.first)
-    @weather = storm_brewing
-    if @weather == "stormy"
+    weather = storm_brewing
+    if weather == "stormy"
       fail 'Cannot take off in stormy weather'
     elsif @parked_planes.empty?
       fail 'Airport is empty'
     else
-      plane::status = "flying"
+      plane.status = "flying"
       @parked_planes.delete(plane)
     end
   end
